@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # 🔑 برگشت به کلید Groq (رایگان و کارآمد)
 GROQ_API_KEY = "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"
-MODEL = "llama-3.1-8b-instant" 
+MODEL = "qwen/qwen3.8-27b" 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 SYSTEM = "تو یک دستیار هوش مصنوعی فارسی‌زبان، دقیق و خوش‌برخورد هستی. کوتاه و مفید جواب بده."
