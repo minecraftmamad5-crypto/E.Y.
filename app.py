@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 # 🔑 همان کلید و همان مدل فایل ربات Bale — دست‌نخورده
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 MODEL = "gpt-6-luna"
 
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
