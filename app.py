@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-"""وب‌سایت چت — همان مکانیزم ربات Bale بدون هیچ تغییری در کلید/مدل/Endpoint."""
+import os
 import requests
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# 🔑 همان کلید و همان مدل فایل ربات Bale — دست‌نخورده
-OPENAI_API_KEY = "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"
-MODEL = "gpt-6-luna"
+# 🔑 خواندن کلید از Environment Variable (در Render تنظیم می‌شود)
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
+# مدل و آدرس API (دقیقاً مثل ربات بله)
+MODEL = "gpt-6-luna"
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 
 SYSTEM_INSTRUCTIONS = (
@@ -21,7 +22,12 @@ MAX_HISTORY_MESSAGES = 10
 
 
 def ask_openai(messages):
-    """همان تابع ask_openai ربات Bale، فقط به‌جای CHAT_HISTORY آرگومان می‌گیرد."""
+    """ارسال پیام‌ها به OpenAI Responses API — دقیقاً مثل ربات بله."""
+    
+    # اگر کلید تنظیم نشده باشد، همان اول خطا می‌دهیم
+    if not OPENAI_API_KEY:
+        return None, "کلید API در سرور تنظیم نشده است (متغیر OPENAI_API_KEY را چک کنید).", 500
+
     input_messages = messages[-MAX_HISTORY_MESSAGES:]
 
     payload = {
@@ -60,7 +66,7 @@ def ask_openai(messages):
         print("OpenAI returned invalid JSON.")
         return None, "پاسخ سرویس قابل خواندن نبود؛ دوباره امتحان کن.", 500
 
-    # استخراج متن دقیقاً مثل ربات Bale
+    # استخراج متن دقیقاً مثل ربات بله
     answer_parts = []
     for item in data.get("output", []):
         if item.get("type") == "message":
@@ -109,4 +115,5 @@ def chat():
 
 
 if __name__ == "__main__":
+    # برای اجرای لوکال (در Render از gunicorn استفاده می‌شود)
     app.run(host="0.0.0.0", port=5000, debug=True)
