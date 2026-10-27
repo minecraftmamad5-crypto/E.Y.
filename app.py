@@ -9,7 +9,7 @@ app = Flask(__name__)
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 # مدل و آدرس API (دقیقاً مثل ربات بله)
-MODEL = "gpt-6-luna"
+MODEL = "gpt-4o-mini"
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 
 SYSTEM_INSTRUCTIONS = (
