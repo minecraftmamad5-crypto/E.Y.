@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 # 🔑 برگشت به کلید Groq (رایگان و کارآمد)
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "AQ.Ab8RN6KJypJqgCm3GtYMZC93dbBo725m_mq_ZkZtenFRnKFMIQ"
 MODEL = "qwen/qwen3.8-27b" 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
